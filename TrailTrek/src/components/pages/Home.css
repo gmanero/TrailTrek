@@ -1,0 +1,27 @@
+/* Home.css */
+
+.home {
+    background-image: url('');
+    background-size: cover;
+    color: #0e4b65; /* Change text color to white */
+    text-align: center;
+    padding: 100px 0;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .pictureFront {
+    margin-top: 50px; /* Adjust top margin for better positioning */
+  }
+  
+  .mountain_img {
+    height: auto;
+    width: 100%; /* Make the image responsive and fill the container */
+    max-width: 800px; /* Limit the maximum width of the image */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Add a shadow effect */
+  }
+  
