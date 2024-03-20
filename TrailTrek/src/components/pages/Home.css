@@ -1,27 +1,120 @@
 /* Home.css */
 
 .home {
-    background-image: url('');
-    background-size: cover;
-    color: #0e4b65; /* Change text color to white */
-    text-align: center;
-    padding: 100px 0;
+  text-align: center;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 3rem;
+  color: #598693;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.search-bar {
+  margin-bottom: 40px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #0e4b65;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.search-bar input:focus {
+  outline: none;
+  border-color: #4285f4;
+  box-shadow: 0 0 5px rgba(66, 133, 244, 0.5);
+}
+
+.trails-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.trail-card {
+  margin: 20px;
+  padding: 20px;
+  width: calc(33.33% - 40px);
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.trail-card:hover {
+  transform: translateY(-5px);
+}
+
+.trail-image {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.trail-info {
+  margin-top: 20px;
+}
+
+.trail-info h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.trail-info p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.trail-info p:last-child {
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .trails-container {
+    justify-content: flex-start;
   }
-  
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
+
+  .trail-card {
+    width: calc(50% - 40px);
   }
-  
-  .pictureFront {
-    margin-top: 50px; /* Adjust top margin for better positioning */
+}
+
+@media screen and (max-width: 480px) {
+  .trail-card {
+    width: calc(100% - 40px);
   }
-  
-  .mountain_img {
-    height: auto;
-    width: 100%; /* Make the image responsive and fill the container */
-    max-width: 800px; /* Limit the maximum width of the image */
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Add a shadow effect */
-  }
-  
+}
+
+.reviews-section {
+  margin-top: 20px;
+}
+
+.reviews-section h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.reviews-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.review-item {
+  margin-bottom: 10px;
+}
