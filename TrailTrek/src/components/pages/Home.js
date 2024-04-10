@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase';
 import './Home.css';
-import InteractiveMap from './interactiveMap';
 
 const Home = () => {
   const [trails, setTrails] = useState([]);
@@ -17,7 +16,7 @@ const Home = () => {
         const trailsData = trailsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         setTrails(trailsData);
       } catch (error) {
-        console.error('Error fetching trails: ', error);
+        console.error('Error fetching trails:', error);
       }
     };
     fetchTrails();
@@ -29,7 +28,7 @@ const Home = () => {
       .map(trail => (
         <div key={trail.id} className="trail-card">
           <Link to={`/trail/${trail.id}`} className="trail-link">
-            <div className="trail-image" style={{ backgroundImage: `url(${trail.image})` }}></div>
+            <div className="trail-image"> <img src={trail.image} alt="Trail" /></div> 
             <div className="trail-details">
               <h2 className="trail-name">{trail.name}</h2>
               <p className="trail-location">{trail.location}</p>
@@ -37,6 +36,7 @@ const Home = () => {
                 <p className="info-item">Difficulty: {trail.difficulty}</p>
                 <p className="info-item">Distance: {trail.distance} Miles</p>
                 <p className="info-item">Duration: {trail.duration}</p>
+                <p className="info-item">Description: {trail.description}</p>
               </div>
             </div>
           </Link>
@@ -57,7 +57,7 @@ const Home = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <h2 className="section-title">All Trails</h2>
+        <h2 className="section-title">Trails to explore...</h2>
         <div className='trails-container'>
           {renderTrails()}
         </div>
