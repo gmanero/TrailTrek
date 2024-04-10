@@ -1,48 +1,26 @@
-// Home.js (updated)
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase';
 import './Home.css';
+import InteractiveMap from './interactiveMap';
 
 const Home = () => {
   const [trails, setTrails] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
-//Hypothetical trail data
-  const Trails = [
-    {
-      id: 1,
-      name: "Presidential Trail",
-      location: "White Mountains, NH",
-      difficulty: "Intermediate",
-      distance: "15.2 miles",
-      duration: "6-10 hours",
-      image: "../images/mountain_pic.jpeg",
-      description: "A scenic trail through the beautiful mountain range. Suitable for hiking and biking.",
-      reviews: [
-        { id: 1, user: "John", comment: "Great trail with stunning views!" },
-        { id: 2, user: "Emma", comment: "Perfect for a weekend adventure." }
-      ]
-    },
-    {
-      id: 2,
-      name: "Pinnacle Loop",
-      location: "Michaux State Forest, PA",
-      difficulty: "Easy",
-      distance: "3.5 miles",
-      duration: "1-2 hours",
-      image: "../images/mountain_pic.jpeg",
-      description: "A  easy loop through the lush forest. Ideal for a leisurely stroll.",
-      reviews: [
-        { id: 1, user: "Alice", comment: "Lovely trail with abundant wildlife!" },
-        { id: 2, user: "Bob", comment: "Good for dogs." }
-      ]
-    },
-  ];
-
   useEffect(() => {
-    // Simulated API call to fetch trails data
-    // Replace this with actual API call
-    setTrails(Trails);
+    const fetchTrails = async () => {
+      try {
+        const trailsCollection = collection(db, 'trails');
+        const trailsSnapshot = await getDocs(trailsCollection);
+        const trailsData = trailsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setTrails(trailsData);
+      } catch (error) {
+        console.error('Error fetching trails: ', error);
+      }
+    };
+    fetchTrails();
   }, []);
 
   const renderTrails = () => {
@@ -51,26 +29,17 @@ const Home = () => {
       .map(trail => (
         <div key={trail.id} className="trail-card">
           <Link to={`/trail/${trail.id}`} className="trail-link">
-            <img className='trail-image' src={trail.image} alt={trail.name} />
-            <div className="trail-info">
-              <h2>{trail.name}</h2>
-              <p>{trail.location}</p>
-              <p>Difficulty: {trail.difficulty}</p>
-              <p>Distance: {trail.distance}</p>
-              <p>Duration: {trail.duration}</p>
-              <p>{trail.description}</p>
+            <div className="trail-image" style={{ backgroundImage: `url(${trail.image})` }}></div>
+            <div className="trail-details">
+              <h2 className="trail-name">{trail.name}</h2>
+              <p className="trail-location">{trail.location}</p>
+              <div className="trail-info">
+                <p className="info-item">Difficulty: {trail.difficulty}</p>
+                <p className="info-item">Distance: {trail.distance} Miles</p>
+                <p className="info-item">Duration: {trail.duration}</p>
+              </div>
             </div>
           </Link>
-          <div className="reviews-section">
-            <h3>Reviews:</h3>
-            <ul className="reviews-list">
-              {trail.reviews.map(review => (
-                <li key={review.id} className="review-item">
-                  <strong>{review.user}:</strong> {review.comment}
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
       ));
   };
@@ -88,7 +57,7 @@ const Home = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <span className="subtitle"><strong>Trails near you...</strong></span>
+        <h2 className="section-title">All Trails</h2>
         <div className='trails-container'>
           {renderTrails()}
         </div>
