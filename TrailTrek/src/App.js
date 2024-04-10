@@ -18,7 +18,6 @@ function App() {
       setUser(user); // Set the user state
     });
 
-    // Clean up subscription
     return () => unsubscribe();
   }, []);
 
