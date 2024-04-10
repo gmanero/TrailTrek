@@ -46,14 +46,16 @@
   justify-content: center;
 }
 
+
 .trail-card {
   margin: 20px;
   padding: 20px;
   width: calc(33.33% - 40px);
   background-color: #f5f5f5;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
+  cursor: pointer; 
 }
 
 .trail-card:hover {
@@ -71,18 +73,22 @@
 
 .trail-info h2 {
   font-size: 1.5rem;
-  color: #333;
   margin-bottom: 10px;
 }
 
 .trail-info p {
   font-size: 1rem;
-  color: #555;
   margin-bottom: 5px;
 }
 
 .trail-info p:last-child {
   margin-bottom: 20px;
+}
+
+
+.trail-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 @media screen and (max-width: 768px) {
@@ -99,22 +105,4 @@
   .trail-card {
     width: calc(100% - 40px);
   }
-}
-
-.reviews-section {
-  margin-top: 20px;
-}
-
-.reviews-section h3 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-}
-
-.reviews-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-.review-item {
-  margin-bottom: 10px;
 }
