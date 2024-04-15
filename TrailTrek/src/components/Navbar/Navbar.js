@@ -31,7 +31,7 @@ const Navbar = () => {
           <li className="dropdown">
             <CustomLink to="/create">Create</CustomLink>
             <div className="dropdown-content">
-              <CustomLink to="/createTrail">Create Trail</CustomLink>
+              <CustomLink to="/create">Create Trail</CustomLink>
               <CustomLink to="/createActivity">Create Activity</CustomLink>
             </div>
           </li>
